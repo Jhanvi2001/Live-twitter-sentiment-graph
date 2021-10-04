@@ -4,6 +4,8 @@ Created on Sat Sep 11 10:08:07 2021
 
 @author: sjhan
 """
+#Using vaderSentiment
+
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
@@ -13,9 +15,10 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from unidecode import unidecode
 import time
 
+
 analyzer = SentimentIntensityAnalyzer()
 
-conn = sqlite3.connect('exp1.db')
+conn = sqlite3.connect('database_name.db')
 c = conn.cursor()
 
 def create_table():
@@ -30,10 +33,10 @@ def create_table():
 create_table()
 
 #consumer key, consumer secret, access token, access secret.
-ckey="wwoXP6iLVHXI5za08zudK90xF"
-csecret="Aq6lajJ56O0neFsWJT4aR99XCOJ5vs14EmnrAhKjGEEfQ4kWCA"
-atoken="1433817013793607680-4uNjHfglzFDvm8xft5zqMom4GXKLux"
-asecret="ptVGkS3QnOxIu3bY3RrEU2FDuOLj3zRB0A3h2x1LEVvm3"
+ckey=""
+csecret=""
+atoken=""
+asecret=""
 
 class listener(StreamListener):
 

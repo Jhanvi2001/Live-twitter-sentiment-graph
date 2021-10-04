@@ -38,7 +38,8 @@ app.layout = html.Div([
               events=[Input('graph-update', 'n_intervals')])
 def update_graph_scatter(sentiment_term):
     try:
-        conn = sqlite3.connect('final.db')
+        conn = sqlite3.connect('database_name.db')
+        #fetching values from database
         c = conn.cursor()
         df = pd.read_sql("SELECT * FROM sentiment WHERE tweet LIKE ? ORDER BY unix DESC LIMIT 1000", conn ,params=('%' + sentiment_term + '%',))
         df.sort_values('unix', inplace=True)

@@ -14,10 +14,11 @@ from unidecode import unidecode
 import time
 
 
-
-conn = sqlite3.connect('final_textblob.db')
+#create database to store all the  tweets and their sentiments
+conn = sqlite3.connect('database_name.db')
 c = conn.cursor()
 
+#table with certain components
 def create_table():
     try:
         c.execute("CREATE TABLE IF NOT EXISTS sentiment(unix REAL, tweet TEXT, sentiment REAL)")
@@ -29,11 +30,12 @@ def create_table():
         print(str(e))
 create_table()
 
+#here build your own app and get consumer key and others
 #consumer key, consumer secret, access token, access secret.
-ckey="wwoXP6iLVHXI5za08zudK90xF"
-csecret="Aq6lajJ56O0neFsWJT4aR99XCOJ5vs14EmnrAhKjGEEfQ4kWCA"
-atoken="1433817013793607680-4uNjHfglzFDvm8xft5zqMom4GXKLux"
-asecret="ptVGkS3QnOxIu3bY3RrEU2FDuOLj3zRB0A3h2x1LEVvm3"
+ckey=""
+csecret=""
+atoken=""
+asecret=""
 
 class listener(StreamListener):
 
@@ -64,6 +66,8 @@ while True:
         auth = OAuthHandler(ckey, csecret)
         auth.set_access_token(atoken, asecret)
         twitterStream = Stream(auth, listener())
+        
+        #filter out the tweets with particular word or lists
         twitterStream.filter(track=["a","e","i","o","u"])
     except Exception as e:
         print(str(e))

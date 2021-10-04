@@ -59,7 +59,6 @@ class listener(StreamListener):
     def on_error(self, status):
         print(status)
 
-
 while True:
 
     try:
